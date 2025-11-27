@@ -1,9 +1,13 @@
 import chromadb
 import pdfChunking as pdf
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
+dbDirectory = os.getenv("DB_DIRECTORY")
+client = chromadb.PersistentClient(dbDirectory)
 
-client = chromadb.Client()
-collection = client.create_collection("document")
+collection = client.get_collection("documents")
 
 
 def addDocumentDB(filePath):
@@ -21,7 +25,9 @@ def addDocumentDB(filePath):
     collection.add(
         documents=[chunk for chunk in document], 
         ids=["doc"+str(i) for i in range(len(document))],
+        
     )
+    print("The document " + filePath + " is in the database")
 
 def searchQuery(retrieve):
     """
@@ -45,3 +51,7 @@ def searchQuery(retrieve):
         n_results=3 
     )
     return results
+
+#addDocumentDB('lessonsPDF/comOralC1.pdf')
+
+#print(searchQuery("Quelles sont les postures à adopter")['ids'][0][1])
