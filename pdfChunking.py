@@ -7,11 +7,10 @@ def pdfChunking(filePath):
     Split a pdf into chunk of similar size 
 
     Args:
-        filePath (string): Path of the document to insert into the db
+        filePath (str): Path of the document to insert into the db
 
     Returns:
-        texts: List of str representing all the chunks of the pdf
-
+        list[str]: List of string representing each chunk of the pdf
     """
     document = PdfReader(open(filePath, 'rb'))
     pdftext = ""
