@@ -25,6 +25,7 @@ def addDocumentDB(filePath):
     collection.add(
         documents=[chunk for chunk in document], 
         ids=["doc"+str(i) for i in range(len(document))],
+        metadatas = [{"categorie": filePath} for i in range(len(document))]
         
     )
     print("The document " + filePath + " is in the database")
@@ -52,6 +53,6 @@ def searchQuery(retrieve):
     )
     return results
 
-#addDocumentDB('lessonsPDF/comOralC1.pdf')
+#addDocumentDB('documents/comOralC1.pdf')
 
 #print(searchQuery("Quelles sont les postures à adopter")['ids'][0][1])
