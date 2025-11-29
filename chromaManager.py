@@ -49,10 +49,10 @@ def searchQuery(retrieve):
     """
     results = collection.query(
         query_texts=[retrieve],
-        n_results=3 
+        n_results=15
     )
     return results
 
-#addDocumentDB('documents/comOralC1.pdf')
+#addDocumentDB('documents/CCTP.pdf')
 
 #print(searchQuery("Quelles sont les postures à adopter")['ids'][0][1])

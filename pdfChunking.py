@@ -2,6 +2,7 @@ from PyPDF2 import PdfReader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 
+
 def pdfChunking(filePath):
     """
     Split a pdf into chunk of similar size 
@@ -18,8 +19,8 @@ def pdfChunking(filePath):
     for page in range(len(document.pages)):
         pageObj = document.pages[page]
         pdftext += pageObj.extract_text()
-
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=100, chunk_overlap=0)
+    
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200, separators=["\n\n", "\n", "(?<=\. )", " ", ""])
     texts = text_splitter.split_text(pdftext)
     
     return texts
