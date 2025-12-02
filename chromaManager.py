@@ -1,13 +1,20 @@
 import chromadb
+from chromadb.utils import embedding_functions
 import pdfChunking as pdf
 from dotenv import load_dotenv
 import os
+
+huggingface = embedding_functions.SentenceTransformerEmbeddingFunction(
+    model_name="BAAI/bge-m3",
+    device="cpu",
+    normalize_embeddings=True
+)
 
 load_dotenv()
 dbDirectory = os.getenv("DB_DIRECTORY")
 client = chromadb.PersistentClient(dbDirectory)
 
-collection = client.get_collection("documents")
+collection = client.get_or_create_collection(name="documents", embedding_function=huggingface)
 
 
 def addDocumentDB(filePath):
@@ -49,10 +56,10 @@ def searchQuery(retrieve):
     """
     results = collection.query(
         query_texts=[retrieve],
-        n_results=15
+        n_results=50
     )
     return results
 
-#addDocumentDB('documents/CCTP.pdf')
+#addDocumentDB('documentsPDF/CCTP-GROS-OEUVRE.pdf')
 
 #print(searchQuery("Quelles sont les postures à adopter")['ids'][0][1])
