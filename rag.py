@@ -14,5 +14,5 @@ def promptGeneration(retrieve):
 
 #addDocumentDB('documents/comOralC1.pdf')
 
-print(completionRequest(promptGeneration("Quel est le code secret?")))
+#print(completionRequest(promptGeneration("Quel est le code secret pour ouvrir le coffre fort?")))
 

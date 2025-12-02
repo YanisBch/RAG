@@ -3,6 +3,26 @@ __pycache__/
 *.py[codz]
 *$py.class
 
+# --- 1. Sécurité (CRITIQUE) ---
+.env
+
+# --- 2. Dossiers lourds / Générés ---
+# Votre base de données vectorielle (ne jamais envoyer ça)
+chromaDB/
+
+# Votre environnement virtuel Python (les bibliothèques installées)
+env/
+venv/
+.venv/
+
+# --- 3. Fichiers temporaires Python ---
+# Ces dossiers se créent tout seuls, pas besoin de les sauvegarder
+__pycache__/
+*.pyc
+
+# --- 4. Fichiers Système (Optionnel mais recommandé) ---
+.DS_Store
+
 # C extensions
 *.so
 
